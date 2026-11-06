@@ -1,12 +1,57 @@
-CMakeLists.txt.user
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-_deps
+# ==========================================
+# CMake / Ninja Build Files
+# ==========================================
+
+build/
+build-*/
+cmake-build-*/
+out/
+
+# ==========================================
+# vcpkg
+# ==========================================
+
+vcpkg_installed/
+
+# ==========================================
+# MSVC / Visual Studio
+# ==========================================
+
+.vs/
+*.obj
+*.pdb
+*.ilk
+*.pch
+*.idb
+*.ipch
+*.sdf
+*.opensdf
+
+# ==========================================
+# CMake User Configuration
+# ==========================================
+
 CMakeUserPresets.json
+
+# ==========================================
+# Clang / clangd
+# ==========================================
+
+.cache/
+.clangd/
+
+# ==========================================
+# Windows Temporary Files
+# ==========================================
+
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ==========================================
+# Logs and Temporary Files
+# ==========================================
+
+*.log
+*.tmp
+*.bak
