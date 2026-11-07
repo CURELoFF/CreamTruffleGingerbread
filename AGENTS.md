@@ -22,6 +22,8 @@
 
 ## 当前状态快照
 
-- 已完成：CMake + vcpkg + Presets 初始化、SDL3 诊断程序、主窗口 + 事件循环、clangd 集成、知识文章 01/02。
-- 进行中：模块拆分（core/Window + core/Application）、文章 03（头文件与实现分离）。
-- 环境：工具链齐备（MSVC 14.44 / CMake 4.4 / Ninja 1.13 / Zed）；网络走 TUN 模式代理，无需环境变量。
+- 已完成：CMake + vcpkg + Presets 初始化、SDL3 诊断程序、主窗口 + 事件循环、clangd 集成、知识文章 01（消息泵）/02（RAII）/03（头文件分离）、OpenCode skills ×11 装入 `.opencode/skills/`、AGENTS.md + opencode.jsonc。
+- 进行中：下一课 = 文章 04《CMake 心智模型》+ `core/Window`（RAII 实战，.hpp/.cpp 分离）+ 模块拆分；文章 05（vcpkg）已从关键路径摘除，推迟到装下一个依赖时写。
+- 路线图：模块拆分 → Application/主循环 → SDL_Renderer 渲染第一个矩形 → 键盘输入控制对象移动（408 数据结构登场）→ 碰撞 → 帧率控制。
+- 待提交：`.opencode/`、`AGENTS.md`、`opencode.jsonc`、`docs/`（01~03 文章）、`DEV_CHEAT_SHEET.md`；建议提交信息 `Add OpenCode skills, AGENTS.md, and knowledge base articles`。
+- 学生进度：02 自测已通过（理解所有权优先于释放、RAII 构造/析构自动释放、禁拷贝、unique_ptr 定位）；03 文章已发出，自测未回收；期待"窗口内游戏对象交互"目标。

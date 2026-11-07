@@ -1,9 +1,11 @@
 #include <SDL3/SDL.h>
+#include "core/Window.hpp"
 
 #include <cstdio>
 #include <iostream>
 
 int main() {
+    std::cout << "main function start"<<std::endl;
     // --- 1. Initialize the VIDEO subsystem ---
     if (!SDL_Init(SDL_INIT_VIDEO)) {
         std::cerr << "SDL_Init failed: " << SDL_GetError() << '\n';
@@ -13,12 +15,8 @@ int main() {
     // --- 2. Create the main window ---
     // SDL3 signature: title, width, height, SDL_WindowFlags.
     // (SDL2 took an x/y position too; SDL3 centers windows by default.)
-    SDL_Window* window = SDL_CreateWindow(
-        "CreamTruffleGingerbread",                                  // title
-        1600, 900,                                                   // size in pixels
-        SDL_WINDOW_RESIZABLE                                        // flags: user can resize
-    );
-    if (!window) {
+    Window w("C++ Toolchained Game",1600,900);
+    if (!w.IsValid()) {
         std::cerr << "SDL_CreateWindow failed: " << SDL_GetError() << '\n';
         SDL_Quit();
         return EXIT_FAILURE;
@@ -41,7 +39,6 @@ int main() {
     }
 
     // --- 4. Clean shutdown, in reverse order of creation ---
-    SDL_DestroyWindow(window);
     SDL_Quit();
     std::cout << "Exited cleanly.\n";
     return EXIT_SUCCESS;
