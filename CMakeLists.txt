@@ -12,6 +12,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_executable(CreamTruffleGingerbread
     src/main.cpp
     src/core/Window.cpp
+    src/core/Application.cpp
 )
 
 find_package(SDL3 CONFIG REQUIRED)
