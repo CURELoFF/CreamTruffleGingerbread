@@ -4,30 +4,45 @@
 #include <iostream>
 
 int main() {
-    std::cout<<"Program Start"<<std::endl;
-    // --- 1. Report which SDL version we linked against ---
-    // SDL3 packs the version into a single int:
-    //   major * 1_000_000 + minor * 1_000 + patch
-    const int version = SDL_GetVersion();
-    std::printf(
-        "SDL3 runtime version: %d.%d.%d (packed: %d)\n",
-        version / 1'000'000,
-        (version / 1'000) % 1'000,
-        version % 1'000,
-        version
-    );
-
-    // --- 2. Initialize the VIDEO subsystem ---
+    // --- 1. Initialize the VIDEO subsystem ---
     if (!SDL_Init(SDL_INIT_VIDEO)) {
-        // SDL3 functions return bool: false signals failure.
-        // SDL_GetError() returns a description of the last error.
         std::cerr << "SDL_Init failed: " << SDL_GetError() << '\n';
         return EXIT_FAILURE;
     }
-    std::cout << "SDL_Init(VIDEO): OK\n";
 
-    // --- 3. Clean shutdown ---
+    // --- 2. Create the main window ---
+    // SDL3 signature: title, width, height, SDL_WindowFlags.
+    // (SDL2 took an x/y position too; SDL3 centers windows by default.)
+    SDL_Window* window = SDL_CreateWindow(
+        "CreamTruffleGingerbread",                                  // title
+        800, 600,                                                   // size in pixels
+        SDL_WINDOW_RESIZABLE                                        // flags: user can resize
+    );
+    if (!window) {
+        std::cerr << "SDL_CreateWindow failed: " << SDL_GetError() << '\n';
+        SDL_Quit();
+        return EXIT_FAILURE;
+    }
+    std::cout << "Window created. Close it (or press Alt+F4) to quit.\n";
+
+    // --- 3. The event loop: the heart of every game ---
+    bool running = true;
+    SDL_Event event;
+
+    while (running) {
+        // Drain all pending events this frame.
+        // SDL3 uses SDL_PollEvent(out SDL_Event*) returning true while events remain.
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_EVENT_QUIT) {   // user clicked the X / Alt+F4
+                running = false;
+            }
+        }
+        // (Later: update -> render goes here, once per frame.)
+    }
+
+    // --- 4. Clean shutdown, in reverse order of creation ---
+    SDL_DestroyWindow(window);
     SDL_Quit();
-    std::cout << "SDL_Quit: done.\n";
+    std::cout << "Exited cleanly.\n";
     return EXIT_SUCCESS;
 }
