@@ -15,7 +15,7 @@ int main() {
     // (SDL2 took an x/y position too; SDL3 centers windows by default.)
     SDL_Window* window = SDL_CreateWindow(
         "CreamTruffleGingerbread",                                  // title
-        800, 600,                                                   // size in pixels
+        1600, 900,                                                   // size in pixels
         SDL_WINDOW_RESIZABLE                                        // flags: user can resize
     );
     if (!window) {
