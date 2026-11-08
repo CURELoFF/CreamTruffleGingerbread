@@ -1,5 +1,7 @@
 #include"Application.hpp"
 #include"Collision.hpp"
+#include "SDL3/SDL_stdinc.h"
+#include "SDL3/SDL_timer.h"
 
 #include<algorithm>
 #include<iostream>
@@ -20,6 +22,9 @@ void Application::Run() {
     bool running = true;
     SDL_Event event;
 
+    const Uint64 freq = SDL_GetPerformanceFrequency(); // 每秒 tick 数（机器常数）
+    Uint64 last = SDL_GetPerformanceCounter(); // 记录上次运行到现在的时间间隔 并初始化值
+
     SDL_FRect player{50.f,50.f,100.f,100.f};
     SDL_FRect entity{200.f,200.f,50.f,50.f};
 
@@ -31,15 +36,24 @@ void Application::Run() {
             if(event.type == SDL_EVENT_QUIT) running=false;
         }
         // ======================  Update  ====================== //
+        const Uint64 now = SDL_GetPerformanceCounter();
+        // Use dt instead of deltaTime because dt is a const
+        double deltaTime = static_cast<double>(now-last) / static_cast<double>(freq);
+        last = now;
+        deltaTime = std::min(deltaTime,1.); // 限制最久时间间隔
+        // Use this instead of deltaTime
+        const double dt = deltaTime;
+        // std::cout<<"frame : "<< 1 / dt <<std::endl;
         const bool* keys = SDL_GetKeyboardState(nullptr);
 
         if(keys[SDL_SCANCODE_ESCAPE]) running=false;
 
-        float step = 2.f;
-        if(keys[SDL_SCANCODE_LEFT]) player.x -= step;
-        if(keys[SDL_SCANCODE_RIGHT]) player.x += step;
-        if(keys[SDL_SCANCODE_UP]) player.y -= step;
-        if(keys[SDL_SCANCODE_DOWN]) player.y += step;
+        float playerMoveSpeed = 64.f;
+        float deltaPlayerMoveSpeed = playerMoveSpeed * static_cast<float>(dt);
+        if(keys[SDL_SCANCODE_LEFT]) player.x -= deltaPlayerMoveSpeed;
+        if(keys[SDL_SCANCODE_RIGHT]) player.x += deltaPlayerMoveSpeed;
+        if(keys[SDL_SCANCODE_UP]) player.y -= deltaPlayerMoveSpeed;
+        if(keys[SDL_SCANCODE_DOWN]) player.y += deltaPlayerMoveSpeed;
         int winw=0,winh=0;
         SDL_GetWindowSize(window_.Get(),&winw,&winh);
         player.x = std::clamp(player.x,0.f,static_cast<float>(winw)-player.w);

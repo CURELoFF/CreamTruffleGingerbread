@@ -4,6 +4,7 @@
 
 Renderer::Renderer(SDL_Window* target) {
     renderer_ = SDL_CreateRenderer(target, nullptr);
+    SDL_SetRenderVSync(renderer_, 1);
 }
 
 Renderer::~Renderer() {
