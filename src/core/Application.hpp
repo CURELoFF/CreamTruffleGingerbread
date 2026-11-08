@@ -1,3 +1,11 @@
+/**
+ * @file Application.hpp
+ * @brief 应用程序封装
+ * @author me
+ * @date 2026-11-7
+ * @version ALPHA
+ */
+
 #pragma once
 #include<SDL3/SDL.h>
 #include<string_view>
@@ -17,11 +25,25 @@ private:
     bool ok_ = false;
 };
 // --- 框架骨架：拥有子系统与窗口，并提供主循环 ---
+/**
+ *
+ */
 class Application {
 public:
-    Application(std::string_view title,int width,int height);
-
+    /**
+     * @brief 构造应用程序(SDL+Window)
+     * @param[in] title 标题
+     * @param[in] width 窗口宽
+     * @param[in] height 窗口高
+     */
+    explicit Application(std::string_view title,int width,int height);
+    /**
+     * @brief 返回窗口是否正常运行
+     */
     bool IsValid() const;
+    /**
+     * 运行应用程序
+     */
     void Run();
 
     Application(const Application&) = delete;

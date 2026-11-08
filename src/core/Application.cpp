@@ -20,4 +20,5 @@ void Application::Run() {
         }
         // update script goes here.
     }
+    std::cout<<"Application clean quit."<<std::endl;
 }

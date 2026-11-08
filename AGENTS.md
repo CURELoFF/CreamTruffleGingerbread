@@ -22,8 +22,10 @@
 
 ## 当前状态快照
 
-- 已完成：CMake + vcpkg + Presets 初始化、SDL3 诊断程序、主窗口 + 事件循环、clangd 集成、知识文章 01（消息泵）/02（RAII）/03（头文件分离）、OpenCode skills ×11 装入 `.opencode/skills/`、AGENTS.md + opencode.jsonc。
-- 进行中：下一课 = 文章 04《CMake 心智模型》+ `core/Window`（RAII 实战，.hpp/.cpp 分离）+ 模块拆分；文章 05（vcpkg）已从关键路径摘除，推迟到装下一个依赖时写。
-- 路线图：模块拆分 → Application/主循环 → SDL_Renderer 渲染第一个矩形 → 键盘输入控制对象移动（408 数据结构登场）→ 碰撞 → 帧率控制。
-- 待提交：`.opencode/`、`AGENTS.md`、`opencode.jsonc`、`docs/`（01~03 文章）、`DEV_CHEAT_SHEET.md`；建议提交信息 `Add OpenCode skills, AGENTS.md, and knowledge base articles`。
-- 学生进度：02 自测已通过（理解所有权优先于释放、RAII 构造/析构自动释放、禁拷贝、unique_ptr 定位）；03 文章已发出，自测未回收；期待"窗口内游戏对象交互"目标。
+- 已完成：构建体系（CMake+vcpkg+Presets+/utf-8）、SDL3 3.4.12、知识文章 01~05/07、`core/Window` + `core/Application`（Subsystem+Window 组合，逆序析构）——**框架第一层骨架落成**（用户已验证安全开关窗）。
+- 进行中：文章 07《渲染》已发出待自测 → 实战 `core/Renderer`（RAII №3，Get() 借句柄）+ Application 每帧画第一个矩形；CMakeLists 需追加 `src/core/Renderer.cpp`。
+- dev.bat：带 MSVC 环境一键启动 Zed（全 ASCII 版）；用户已可官方三种环境启动任选。模板：`cmd /c "vcvars && cmake --build --preset debug"`。
+- 学生确认：代理已从 TUN 切回系统代理模式（速度原因）；**需要网络操作（下载依赖/抓文档）时先提醒用户开 TUN**。
+- 路线图（接近）：渲染 → 输入让矩形动起来（408·数据结构）→ 碰撞 → 帧率控制。
+- 机器注意：两套 VS 并存（F 盘 14.51 / E 盘 14.44，vcpkg hash 与 CMake 所用不同，无害已记账）；机器相关路径 dev.bat 内硬编码。
+- 教学 style：Doxygen 注释（@file/@brief/@param）学生已自发采用；稍后 clang-format 收编风格。

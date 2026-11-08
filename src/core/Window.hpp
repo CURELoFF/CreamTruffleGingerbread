@@ -12,10 +12,12 @@ class Window {
         explicit Window(std::string_view title,int width,int height);
         /**
          * @brief 禁止拷贝构造
+         * 如 Window w2(w); 或 Window w2=w; 都是不被允许的，因为这样会导致所有权/共享情况不明确.
          */
         Window(const Window&) = delete;
         /**
          * @brief 禁止拷贝赋值
+         * 如 w2=w; (w2已存在) 不被允许
          */
         Window& operator=(const Window&) = delete;
         /**
