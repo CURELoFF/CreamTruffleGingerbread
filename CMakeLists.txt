@@ -13,6 +13,7 @@ add_executable(CreamTruffleGingerbread
     src/main.cpp
     src/core/Window.cpp
     src/core/Application.cpp
+    src/core/Renderer.cpp
 )
 
 find_package(SDL3 CONFIG REQUIRED)

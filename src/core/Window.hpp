@@ -29,6 +29,7 @@ class Window {
          * const 承诺该方法不会修改该对象的任何数据.
          */
         bool IsValid() const;
+        SDL_Window* Get() const {return window_;}
     private:
         SDL_Window* window_ = nullptr; // 初始值设为空保证指针安全
 };

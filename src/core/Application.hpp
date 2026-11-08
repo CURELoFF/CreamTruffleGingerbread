@@ -11,6 +11,7 @@
 #include<string_view>
 
 #include "Window.hpp"
+#include "Renderer.hpp"
 // --- 子系统 RAII：太小，不值得单独文件，与 Application 同住 ---
 class Subsystem {
 public:
@@ -51,4 +52,5 @@ public:
 private:
     Subsystem subsystem_;
     Window window_;
+    Renderer renderer_;
 };
