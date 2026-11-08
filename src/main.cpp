@@ -1,9 +1,8 @@
 #include <SDL3/SDL.h>
 #include <cstdlib>
-#include "SDL3/SDL_error.h"
+
 #include "core/Application.hpp"
 
-#include <cstdio>
 #include <iostream>
 
 int main() {
