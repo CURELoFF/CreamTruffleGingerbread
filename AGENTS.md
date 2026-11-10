@@ -23,11 +23,11 @@
 ## 当前状态快照
 
 - 已完成：构建体系（CMake+vcpkg+Presets+/utf-8 + dev.bat）、知识文章 01~10（07 渲染 / 08 输入 / 09 碰撞 / 10 帧率 dt+vsync，自测多数已回收）、`core/Window` + `core/Application`（Subsystem+Window 组合）、`core/Renderer`（RAII+vsync）、`core/Collision.hpp`（header-only AABB）。碰撞实战已验收（敌人瞬移+贴边不算碰撞）；"框架骨架 + 可玩矩形"阶段完成。
-- 进行中：11 号课《游戏循环成人式》文章已发出（累加器/固定步长/插值，含"为何不塞同一处"补录），实战与三道自测未回收；下一课 vector（408 数据结构正席）。10 号课已结课并提交。
+- 进行中：12 号课《vector 登场》文章已发出（顺序表/均摊 O(1)/迭代器失效/Kinematic 封装），实战与自测未回收；11 号课实战已代码质检通过（学生独立完成，2048 px/s 参数自主选择），11 号三道自测挂账待回收。
 - dev.bat：带 MSVC 环境一键启动 Zed（全 ASCII 版）；用户已可官方三种环境启动任选。模板：`cmd /c "vcvars && cmake --build --preset debug"`。
 - 学生确认：代理已从 TUN 切回系统代理模式（速度原因）；**需要网络操作（下载依赖/抓文档）时先提醒用户开 TUN**。
-- 路线图：11 号课验收收尾 → "多对象容器 vector 登场"（408·数据结构正席，顺带封装 Kinematic 插值结构）→ 资源/音频 → 远期：clang-format 收编、CI、更高层次渲染需求。
-- 待提交：docs/knowledge 文章 11（+索引）；11 号实战完成后建议提交：`Add fixed timestep loop with interpolation`（连同文章一起）。
+- 路线图：12 号课验收收尾（含 11 号自测补收）→ 下一篇候选《从矩形到游戏对象》（类封装）与资源/音频二选一定 → 远期：clang-format 收编、CI、更高层次渲染需求。
+- 待提交：docs/knowledge 文章 11+12；12 号实战完成后建议提交：`Add fixed timestep loop, vector entities, and Kinematic interpolation`（连同两篇文章一起）。
 - 学生亮点：连续高质量追问到机制层（传递包含/IWYU、常见坑=通缉令读法、inline=ODR 特赦而非速度开关、Present=限帧闸门、墙钟vs单调钟、GameMaker Step/Draw 次数与插值）——多已写入对应文章补录。
 - 机器注意：两套 VS 并存（F 盘 14.51 / E 盘 14.44，vcpkg hash 与 CMake 所用不同，无害已记账）；机器相关路径 dev.bat 内硬编码。
 - 教学 style：Doxygen 注释（@file/@brief/@param）学生已自发采用；稍后 clang-format 收编风格。

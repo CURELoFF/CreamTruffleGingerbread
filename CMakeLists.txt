@@ -14,6 +14,8 @@ add_executable(CreamTruffleGingerbread
     src/core/Window.cpp
     src/core/Application.cpp
     src/core/Renderer.cpp
+    src/gameobject/EntityEnemy.cpp
+    src/gameobject/EntityPlayer.cpp
 )
 
 find_package(SDL3 CONFIG REQUIRED)
