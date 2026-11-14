@@ -19,5 +19,6 @@ add_executable(CreamTruffleGingerbread
 )
 
 find_package(SDL3 CONFIG REQUIRED)
-target_link_libraries(CreamTruffleGingerbread PRIVATE SDL3::SDL3)
+find_package(SDL3_image CONFIG REQUIRED)
+target_link_libraries(CreamTruffleGingerbread PRIVATE SDL3::SDL3 SDL3_image::SDL3_image)
 target_compile_options(CreamTruffleGingerbread PRIVATE /utf-8)

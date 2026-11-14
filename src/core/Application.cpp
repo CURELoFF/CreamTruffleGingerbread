@@ -35,8 +35,17 @@ void Application::Run() {
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 
     // Init instances
-    EntityPlayer player{};
-    EntityEnemy enemy{};
+    std::vector<std::unique_ptr<GameObject>> worldObjects;
+
+    auto playerObj = std::make_unique<EntityPlayer>(   // 出生时注入环境（窗口尺寸）
+        static_cast<float>(init_win_w), static_cast<float>(init_win_h));
+    auto enemyObj  = std::make_unique<EntityEnemy>();
+
+    EntityPlayer& player = *playerObj;    // 引用 = 别名：指向同一实体，不产生第二具身体
+    EntityEnemy&  enemy  = *enemyObj;
+
+    worldObjects.push_back(std::move(playerObj));   // 所有权移交进容器（细节见下）
+    worldObjects.push_back(std::move(enemyObj));
 
     while(running)
     {
@@ -59,9 +68,12 @@ void Application::Run() {
 
             if(keys[SDL_SCANCODE_ESCAPE]) running=false;
             // 顺序目前不影响，因为在碰撞检测时这些实例必将全都计算完毕
-            player.Update(STEP);
-            enemy.Update(STEP);
+            for(auto& e : worldObjects) {
+                if(e==nullptr) continue;
+                e->Update(STEP);
+            }
             // Collision check
+
             if(Intersects(player.GetCollisionRect(), enemy.GetCollisionRect())) {
                 // if hit, random enemy's position.
                 std::cout<<"Hit at "<<player.GetCollisionRect().x<<","<<player.GetCollisionRect().y<<std::endl;
@@ -77,8 +89,9 @@ void Application::Run() {
         float interpolation = static_cast<float>(acc / STEP);
         SDL_SetRenderDrawColor(renderer_.Get(),32,32,48,SDL_ALPHA_OPAQUE);
         SDL_RenderClear(renderer_.Get());
-        player.Draw(renderer_.Get(), interpolation);
-        enemy.Draw(renderer_.Get(), interpolation);
+        for(auto& e : worldObjects) {
+            e->Draw(renderer_.Get(),interpolation);
+        }
         SDL_RenderPresent(renderer_.Get());
     }
     std::cout<<"Application clean quit."<<std::endl;
