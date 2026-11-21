@@ -5,6 +5,11 @@ description: Custom allocator skill for memory allocation strategies. Use when i
 
 # Custom Allocators
 
+> **平台提示（本项目）**：`LD_PRELOAD`/`.so` 为 Linux 手段；Windows/MSVC 对应物为
+> 全局 `operator new/delete` 替换、CRT 分配器钩子（`_malloc_dbg`/`_CrtSetAllocator`）、
+> 或链接时替换分配器库（如 mimalloc 的 `mimalloc-override`）。设计概念可全用，
+> 命令须改写为 Windows 等价物。
+
 ## Purpose
 
 Guide agents through memory allocator design and tuning: pool/slab/arena/buddy taxonomy, jemalloc internals and `MALLOC_CONF`, mimalloc design, tcmalloc thread-caching, writing a simple pool allocator in C, Rust `GlobalAlloc` trait, fragmentation metrics, and benchmarking.

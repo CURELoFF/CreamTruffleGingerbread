@@ -5,6 +5,10 @@ description: CPU cache optimization skill for C/C++ and Rust. Use when diagnosin
 
 # CPU Cache Optimization
 
+> **平台提示（本项目）**：`perf stat`/`perf record` 是 Linux 工具；Windows 对应物为
+> 任务管理器性能页、Windows Performance Recorder/Analyzer（WPR/WPA）、Intel VTune、
+> 或 Visual Studio 诊断工具。概念（AoS/SoA、伪共享、缓存行、预取）与平台无关，可全用。
+
 ## Purpose
 
 Guide agents through cache-aware programming: diagnosing cache misses with perf, data layout transformations (AoS→SoA), false sharing detection and fixes, prefetching, and cache-friendly algorithm design.

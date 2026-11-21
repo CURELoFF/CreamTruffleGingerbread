@@ -49,8 +49,11 @@ description: Use for ALL teaching and mentoring tasks in this project — system
 
 ## 五、既有进度（避免重复教学）
 
-已完成：Git/CMake/vcpkg 初始化、CMakePresets、SDL3 装库与诊断程序、主窗口 + 事件循环、clangd 集成、知识文章 01（消息泵）与 02（RAII）。
-进行中：模块拆分（core/Window + core/Application）、文章 03（头文件与实现分离）、04（CMake 心智模型）、05（vcpkg）、《vcpkg 凭什么自动装库》等。
-后续路线：渲染（SDL_Renderer）、输入系统、资源管理、帧率控制/Delta Time、ECS、音频、CI/CD。工具按里程碑引入，不提前囤积。
+> **进度以项目根 `AGENTS.md` 的"当前状态快照"为唯一权威**（本文件不复制进度清单，
+> 避免两处真相不同步——2026-11 曾出现本清单停留在文章 02 而实际已完成 13 篇的事故）。
+> 每次回答教学相关问题时，先读 AGENTS.md 快照再决定讲什么、跳过什么。
+
+已知背景（长期有效，不会随进度过期）：学生用过 Unreal Engine、熟悉头文件/实现分离；
+早期不熟 RAII/CMake/vcpkg（现已实战掌握）；走系统级优先路线；重视自测与机制层追问。
 
 涉及 CMake/vcpkg/MSVC/缓存/分配器等细节问题时，可加载相应 skill：cmake、conan-vcpkg、msvc-cl、dynamic-linking、sanitizers、memory-hierarchy-and-caches、virtual-memory-paging-and-tlb、cpu-cache-opt、memory-model、custom-allocators。

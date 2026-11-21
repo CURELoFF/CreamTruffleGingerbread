@@ -23,7 +23,7 @@
 ## 当前状态快照
 
 - 已完成：构建体系（CMake+vcpkg+Presets+/utf-8 + dev.bat）、知识文章 01~10（07 渲染 / 08 输入 / 09 碰撞 / 10 帧率 dt+vsync，自测多数已回收）、`core/Window` + `core/Application`（Subsystem+Window 组合）、`core/Renderer`（RAII+vsync）、`core/Collision.hpp`（header-only AABB）。碰撞实战已验收（敌人瞬移+贴边不算碰撞）；"框架骨架 + 可玩矩形"阶段完成。
-- 进行中：13 号《多态与虚函数》文章已发出。**代笔已完成待学生测试**（学生明确请求，今晚休息明日测）：`InterpProperty.hpp` 全量重写（Interpolate 重载前置修 C3861 + 恢复 SDL_FRect 重载 + float 用 std::lerp + 四通道契约注释）+ `EntityPlayer.hpp/.cpp` 改用 `InterpProperty<SDL_FRect>`（删 posX/posY 双权威，命名保留学生起的 collisionRect_，构造收 (worldW,worldH) 注入）+ `Application.cpp` 出生处传 init_win_w/h。已构建通过。学生测试清单：移动平滑/碰撞瞬移无滑行/改小窗口不再穿透。Enemy 保持旧实现（SetCollisionRectPos=事件语义，正确；后续可迁 Snap）。其余挂账：13 号四道自测 + 11/12 号共六道自测（共十道）、《依赖注入与上下文》文章、碰撞别名后门（暂接受）。
+- 进行中：13 号四道自测已回收判卷（Q1 半对：override 非开关；Q2 满分；Q3 纯虚=虚函数特化已补录；Q4 vtable 每类一份、阈值修正）。**11/12 号六道自测已于 11/21 回收判卷**：11-1 ✅、11-2 ⚠️（accumulator 补拍/插值补不了空帧；>0.1s 丢弃是防死亡螺旋）、11-3 ⚠️（prev=旧位置；修法 Snap 在逻辑层）、12-1 ✅大半（vector≠栈、翻倍扩容均摊证明）、12-2 ❌（遍历中 push_back 触发扩容→迭代器野指针；规矩：先收集后追加/reserve）、12-3 ⚠️（const auto& 只护指针不护对象；正解 Draw const 化，挂账作 B 阶段顺手小改）。除艺术外**知识账全清**（仅剩《依赖注入与上下文》文章 + 碰撞别名后门 + Draw const 化小改）。学生已决定不装角色卡/人设 skill。**14 号《Surface 与 Texture》文章已于 11/21 发出待读**（含实测 API：SDL_image 3.x 无 IMG_Init、SDL_RenderTexture 改名、IMG_LoadTexture 一步式、pitch/析构顺序/path 坑、408 帧缓冲挂钩；自测 3 题）。下一步：学生读 14 号后自写 Surface/Texture RAII 封装（№5/№6）+ 玩家贴图，需准备 assets/ 图片素材。
 - dev.bat：带 MSVC 环境一键启动 Zed（全 ASCII 版）；用户已可官方三种环境启动任选。模板：`cmd /c "vcvars && cmake --build --preset debug"`。
 - 学生确认：代理已从 TUN 切回系统代理模式（速度原因）；**需要网络操作（下载依赖/抓文档）时先提醒用户开 TUN**。
 - 路线图（学生已拍板，408 反客为主·项目作实验载体）：

@@ -5,6 +5,10 @@ description: Virtual memory skill for paging, page tables, and TLB. Use when exp
 
 # Virtual Memory, Paging, and TLB
 
+> **平台提示（本项目）**：文中 Linux 页统计/`/proc` 命令在 Windows 不可用；对应物为
+> VMMap、性能计数器（Memory\Pages/sec）、`GetSystemInfo`。x86-64 四级页表、TLB、
+> 缺页等机制内容两平台通用（Windows 亦为 4 KiB 基础页 + 2 MiB 大页）。
+
 ## Purpose
 
 Explain virtual memory: paging, multi-level page tables, TLB role, page faults, and address translation — bridging OS kernels, embedded MPU, and performance analysis.

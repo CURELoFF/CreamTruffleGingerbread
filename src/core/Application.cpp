@@ -68,7 +68,7 @@ void Application::Run() {
 
             if(keys[SDL_SCANCODE_ESCAPE]) running=false;
             // 顺序目前不影响，因为在碰撞检测时这些实例必将全都计算完毕
-            for(auto& e : worldObjects) {
+            for(const auto& e : worldObjects) {
                 if(e==nullptr) continue;
                 e->Update(STEP);
             }
@@ -89,7 +89,7 @@ void Application::Run() {
         float interpolation = static_cast<float>(acc / STEP);
         SDL_SetRenderDrawColor(renderer_.Get(),32,32,48,SDL_ALPHA_OPAQUE);
         SDL_RenderClear(renderer_.Get());
-        for(auto& e : worldObjects) {
+        for(const auto& e : worldObjects) {
             e->Draw(renderer_.Get(),interpolation);
         }
         SDL_RenderPresent(renderer_.Get());

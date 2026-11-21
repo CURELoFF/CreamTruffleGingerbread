@@ -5,6 +5,11 @@ description: Compiler sanitizer skill for runtime bug detection in C/C++. Use wh
 
 # Sanitizers
 
+> **平台提示（本项目）**：本项目为 Windows/MSVC。MSVC 原生支持
+> `/fsanitize=address`（ASan，含 UBSan 子集）与 `/RTC1` 运行期检查；
+> `-fsanitize=` 系列旗标属于 GCC/Clang。读报告、分类 bug、`ASAN_OPTIONS`
+> 等概念通用，旗标须翻译为 MSVC 形式（或在本机另装 Clang 做交叉验证）。
+
 ## Purpose
 
 Guide agents through choosing, enabling, and interpreting compiler runtime sanitizers for finding memory errors, undefined behaviour, data races, and memory leaks.

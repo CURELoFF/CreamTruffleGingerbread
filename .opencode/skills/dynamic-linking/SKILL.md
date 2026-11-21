@@ -5,6 +5,11 @@ description: Dynamic linking skill for Linux/ELF shared libraries. Use when debu
 
 # Dynamic Linking
 
+> **平台提示（本项目）**：本 skill 的命令与路径均为 **Linux/ELF** 体系。当前项目是
+> Windows/MSVC，对应概念映射为：`.so`→DLL、`LD_LIBRARY_PATH`→DLL 搜索路径/SetDllDirectory、
+> `dlopen/dlsym`→`LoadLibrary/GetProcAddress`、`RPATH`→manifest/应用目录、`LD_PRELOAD`→
+> 导入表/Detours 类插桩。回答时只取概念与设计判断，命令须改写为 Windows 等价物。
+
 ## Purpose
 
 Guide agents through Linux dynamic linking: shared library creation, RPATH/RUNPATH configuration, soname versioning, `dlopen`/`dlsym` plugin patterns, `LD_PRELOAD` interposition, and symbol visibility control.

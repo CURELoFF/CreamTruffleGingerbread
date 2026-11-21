@@ -5,6 +5,9 @@ description: Memory hierarchy skill for caches, coherence, and locality. Use whe
 
 # Memory Hierarchy and Caches
 
+> **平台提示（本项目）**：`perf`/`dma_sync` 等命令为 Linux 语境；Windows 用 WPR/WPA、
+> VTune 或 VS 诊断工具观测缓存行为。缓存理论、组相联、伪共享、MESI 等内容平台无关。
+
 ## Purpose
 
 Teach CPU memory hierarchy: cache levels, associativity, line size, coherence protocols, false sharing, and prefetch behavior — architectural depth complementing optimization practice in `skills/low-level-programming/cpu-cache-opt`.

@@ -18,5 +18,6 @@
 | 11 | 游戏循环成人式：累加器、固定步长与插值 | ✅ 已完成 | 累加器分账、逻辑 60Hz 固定步长、prev/curr 插值、确定性、隧穿还债 |
 | 12 | 多对象容器：vector 登场（408·数据结构正席） | ✅ 已完成 | 顺序表三件套、均摊 O(1)、迭代器失效排雷、const& 借阅、Kinematic 插值封装 |
 | 13 | 多态与虚函数：一个指针多种行为 | ✅ 已完成 | virtual/纯虚/override、虚析构、vtable 间接跳、unique_ptr 容器（RAII №4）、move 过户、切片立案 |
+| 14 | Surface 与 Texture：像素的上传之路 | ✅ 已完成 | CPU 像素 vs 显存贴图、pitch 对齐、IMG_Load 三段/一步、Texture 认 Renderer、RAII №5/№6、析构顺序 |
 
 > 未完待续——每完成一个里程碑，这里会多一行。
