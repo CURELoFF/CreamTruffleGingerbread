@@ -1,3 +1,6 @@
+
+*****************************************************************************
+
 Esc - 退回普通模式
 u   - 撤回
 U   - 撤回整行
@@ -13,6 +16,17 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 < H   L >
     k
     v
+
+Motion
+w  - next word's before
+e  - this word's end
+0  - to line begin
+$  - to lin end
+^  - to first non-space character
+gg - file's begin
+g_ - to current line's last non-space character
+G  - file's end
+  This thing drives me crazy.                     
 
 文件操作
 :q  - 退出

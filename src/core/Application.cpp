@@ -1,3 +1,8 @@
+/**
+ * @file    Application.cpp
+ * @brief   Application 的实现：固定步长主循环与实体世界。
+ */
+
 #include<algorithm>
 #include<iostream>
 #include<cstdlib>
@@ -29,13 +34,13 @@ void Application::Run() {
     // Update
     const Uint64 freq = SDL_GetPerformanceFrequency(); // 每秒 tick 数（机器常数）
     Uint64 last = SDL_GetPerformanceCounter(); // 记录上次运行到现在的时间间隔 并初始化值
-    constexpr double STEP = 1.0/60.0; // 固定步长
+    constexpr double STEP = 1.0/60.0; // 固定步长（秒）
     double acc = 0.0; //累加器
     // Init random seed.
     std::srand(static_cast<unsigned>(std::time(nullptr)));
 
     // Init instances
-    std::vector<std::unique_ptr<GameObject>> worldObjects;
+    std::vector<std::unique_ptr<GameObject>> worldObjects; // 容器持有所有权，遍历时按基类接口调用
 
     // player init
     Surface playerSurface{"Assets/slime_test.png"};
@@ -48,7 +53,7 @@ void Application::Run() {
     EntityPlayer& player = *playerObj;    // 引用 = 别名：指向同一实体，不产生第二具身体
     EntityEnemy&  enemy  = *enemyObj;
 
-    worldObjects.push_back(std::move(playerObj));   // 所有权移交进容器（细节见下）
+    worldObjects.push_back(std::move(playerObj));   // 所有权移交进容器，原指针随即置空
     worldObjects.push_back(std::move(enemyObj));
 
     while(running)
@@ -57,12 +62,14 @@ void Application::Run() {
             if(event.type == SDL_EVENT_QUIT) running=false;
         }
         // ======================  Update  ====================== //
+        // 单帧最多计入 0.1s：防止调试断点/拖动窗口后一次性补拍过多（死亡螺旋）
         const double maxDeltaTime = 0.1;
 
         const Uint64 now = SDL_GetPerformanceCounter();
         acc += std::min(maxDeltaTime,static_cast<double>(now-last) / static_cast<double>(freq));
         last = now;
         // 使用固定步长 , 每帧处理一次 -> 每步处理一次 .每秒帧数不固定,步数一般固定
+        // 逻辑跑固定步长；渲染帧再用 acc/STEP 插值，两者解耦
         while(acc >= STEP) {
             int winw=0,winh=0;
             SDL_GetWindowSize(window_.Get(),&winw,&winh);
@@ -89,7 +96,7 @@ void Application::Run() {
 
 
         // ======================  Render  ====================== //
-        // update script goes here.
+        // 渲染阶段只读：用本帧剩余的时间比例做插值，不修改任何逻辑状态
         float interpolation = static_cast<float>(acc / STEP);
         SDL_SetRenderDrawColor(renderer_.Get(),32,32,48,SDL_ALPHA_OPAQUE);
         SDL_RenderClear(renderer_.Get());
