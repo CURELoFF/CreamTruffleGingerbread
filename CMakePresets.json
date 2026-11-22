@@ -10,6 +10,7 @@
       "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
       "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": "x64-windows",
+        "VCPKG_OVERLAY_PORTS": "${sourceDir}/tools/vcpkg-overlays",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },

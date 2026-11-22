@@ -1,9 +1,11 @@
 #include"EntityPlayer.hpp"
 #include "SDL3/SDL_rect.h"
+#include <SDL3/SDL_render.h>
 #include <algorithm>
+#include <cstdlib>
 
-EntityPlayer::EntityPlayer(float worldW, float worldH)
-    : worldW_(worldW), worldH_(worldH) {}
+EntityPlayer::EntityPlayer(float worldW, float worldH,SDL_Renderer* renderer,SDL_Surface* surface)
+    : worldW_(worldW), worldH_(worldH), texture_(renderer,surface){}
 
 void EntityPlayer::Update(double delta){
     collisionRect_.BeginStep();   // 拍首契约：旗子复位（会写状态的对象第一行）
@@ -27,4 +29,7 @@ void EntityPlayer::Draw(SDL_Renderer* renderer,float interpolation){
     SDL_FRect shown = collisionRect_.Rendered(interpolation);   // 读通道：插值视图
     SDL_SetRenderDrawColor(renderer, 230, 120, 70, SDL_ALPHA_OPAQUE);
     SDL_RenderFillRect(renderer, &shown);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    if(texture_.IsValid())
+        SDL_RenderTexture(renderer, texture_.Get(), nullptr, &shown );
 }

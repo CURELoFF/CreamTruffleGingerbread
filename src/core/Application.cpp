@@ -37,8 +37,12 @@ void Application::Run() {
     // Init instances
     std::vector<std::unique_ptr<GameObject>> worldObjects;
 
+    // player init
+    Surface playerSurface{"Assets/slime_test.png"};
     auto playerObj = std::make_unique<EntityPlayer>(   // 出生时注入环境（窗口尺寸）
-        static_cast<float>(init_win_w), static_cast<float>(init_win_h));
+        static_cast<float>(init_win_w), static_cast<float>(init_win_h),renderer_.Get(),playerSurface.Get());
+
+    // enemy init
     auto enemyObj  = std::make_unique<EntityEnemy>();
 
     EntityPlayer& player = *playerObj;    // 引用 = 别名：指向同一实体，不产生第二具身体
