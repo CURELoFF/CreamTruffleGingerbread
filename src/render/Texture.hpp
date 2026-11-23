@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <SDL3/SDL_rect.h>
 #include <SDL3/SDL_render.h>
 #include <SDL3_image/SDL_image.h>
 #include <string_view>
@@ -54,6 +55,10 @@ public:
      * @return 成功返回 true。
      */
     bool IsValid() const {return texture_!=nullptr;}
+
+    void Draw(SDL_Renderer* renderer,const SDL_FRect* src,const SDL_FRect& dst) const {
+        if(texture_) SDL_RenderTexture(renderer, texture_, src, &dst);
+    }
 private:
     SDL_Texture* texture_=nullptr; ///< 显存纹理句柄；nullptr 表示创建失败
 
