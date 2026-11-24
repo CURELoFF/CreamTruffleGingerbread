@@ -9,6 +9,7 @@
       "features": [ "png" ]
     },
     "sdl3-ttf",
+    "nlohmann-json",
     {
       "name": "imgui",
       "features": [ "sdl3-binding", "sdl3-renderer-binding" ]

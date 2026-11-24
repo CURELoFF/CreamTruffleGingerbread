@@ -22,5 +22,6 @@
 | 15 | C++ 初始化语法：括号、花括号与等号 | ✅ 已完成（语法补给支线） | 直接/拷贝/列表初始化、禁窄化、最烦恼解析、聚合初始化、explicit、initializer_list、成员初始化列表 |
 | 16 | 精灵图与瓦片图集：一张大图如何变成许多小图 | ✅ 已完成 | srcRect/dstRect 取帧、行列索引=二维数组寻址、图集减少绑定与提升缓存局部性、纹理渗色与最近邻采样、水平翻转省素材 |
 | 17 | 精灵表动画与方向帧：让静止的格子动起来 | ✅ 已完成 | 帧索引+时间+状态三要素、row=方向 col=时间、accumulator 分频换帧（while 补帧、保留余数）、AnimationClip 数据驱动、FSM 切状态复位、帧索引绝不可插值、回合制离散步进三方案 |
+| 18 | 资源清单 manifest：把布局知识搬出代码 | ✅ 已完成 | 存储载体（constexpr/JSON/Lua）与 schema 正交、单一真相源、startX/startY/stepX/stepY 把"帧往哪排"也交给数据、frameMs 用整数、运行期两道闸门 Validate() + ValidateFits()、nlohmann/json 只许出现在 loader.cpp、实战复盘：真实素材是转置的 |
 
 > 未完待续——每完成一个里程碑，这里会多一行。

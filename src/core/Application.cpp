@@ -7,13 +7,14 @@
 #include<iostream>
 #include<cstdlib>
 #include<ctime>
+#include<utility>
 #include<vector>
-//#include<utility>
 
 #include"Application.hpp"
 #include"Collision.hpp"
 #include"../gameobject/EntityPlayer.hpp"
 #include"../gameobject/EntityEnemy.hpp"
+#include"../render/SpriteSheetLoader.hpp"
 
 Application::Application(std::string_view title,int width,int height) :
     subsystem_(SDL_INIT_VIDEO),
@@ -43,9 +44,17 @@ void Application::Run() {
     std::vector<std::unique_ptr<GameObject>> worldObjects; // 容器持有所有权，遍历时按基类接口调用
 
     // player init
-    Surface playerSurface{"Assets/slime_test.png"};
-    auto playerObj = std::make_unique<EntityPlayer>(   // 出生时注入环境（窗口尺寸）
-        static_cast<float>(init_win_w), static_cast<float>(init_win_h),renderer_.Get(),playerSurface.Get());
+    // 清单先于实体载入：它描述了贴图路径、帧尺寸与全部动画片段
+    std::unique_ptr<EntityPlayer> playerObj;
+    try {
+        SheetDesc playerSheet = LoadSheetFromJson("Assets/player.json");
+        playerObj = std::make_unique<EntityPlayer>(   // 出生时注入环境（窗口尺寸）
+            static_cast<float>(init_win_w), static_cast<float>(init_win_h),
+            renderer_.Get(), std::move(playerSheet));
+    } catch (const std::exception& e) {
+        std::cerr << "Failed to init player: " << e.what() << std::endl;
+        return;   // 资源是硬依赖：加载失败就不该带着坏数据继续跑
+    }
 
     // enemy init
     auto enemyObj  = std::make_unique<EntityEnemy>();

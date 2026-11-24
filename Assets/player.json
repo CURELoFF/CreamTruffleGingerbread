@@ -1,0 +1,11 @@
+{
+  "texture": "Assets/player.png",
+  "frameWidth": 24,
+  "frameHeight": 44,
+  "clips": [
+    { "name": "walk_right", "startX": 0,  "startY": 0, "stepX": 0, "stepY": 44, "frames": 4, "frameMs": 100, "loop": true },
+    { "name": "walk_left",  "startX": 24, "startY": 0, "stepX": 0, "stepY": 44, "frames": 4, "frameMs": 100, "loop": true },
+    { "name": "walk_down",  "startX": 48, "startY": 0, "stepX": 0, "stepY": 44, "frames": 4, "frameMs": 100, "loop": true },
+    { "name": "walk_up",    "startX": 72, "startY": 0, "stepX": 0, "stepY": 44, "frames": 4, "frameMs": 100, "loop": true }
+  ]
+}

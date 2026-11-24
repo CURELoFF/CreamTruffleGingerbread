@@ -51,13 +51,34 @@ public:
      */
     SDL_Texture* Get() const {return texture_;}
     /**
+     * @brief 查询纹理尺寸（像素）。
+     * @return 宽高；纹理无效时返回 (0,0)。
+     */
+    SDL_FPoint Size() const {
+        SDL_FPoint size{0.f, 0.f};
+        if(texture_) SDL_GetTextureSize(texture_, &size.x, &size.y);
+        return size;
+    }
+    /**
      * @brief 查询纹理是否创建成功。
      * @return 成功返回 true。
      */
     bool IsValid() const {return texture_!=nullptr;}
-
+    /**
+     * @brief 画纹理的一块子矩形（图集取帧）。
+     * @param[in] renderer 渲染目标（借用）。
+     * @param[in] src      源矩形：图集上的取帧区域；nullptr 表示整张图。
+     * @param[in] dst      目标矩形（屏幕坐标与尺寸）。
+     */
     void Draw(SDL_Renderer* renderer,const SDL_FRect* src,const SDL_FRect& dst) const {
         if(texture_) SDL_RenderTexture(renderer, texture_, src, &dst);
+    }
+
+    /**
+     * @brief 设为最近邻采样：像素画放大时保持硬边，不被线性插值糊掉。
+     */
+    void SetNearestScale() const {
+        if(texture_) SDL_SetTextureScaleMode(texture_, SDL_SCALEMODE_NEAREST);
     }
 private:
     SDL_Texture* texture_=nullptr; ///< 显存纹理句柄；nullptr 表示创建失败

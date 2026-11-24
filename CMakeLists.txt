@@ -16,9 +16,12 @@ add_executable(CreamTruffleGingerbread
     src/core/Renderer.cpp
     src/gameobject/EntityEnemy.cpp
     src/gameobject/EntityPlayer.cpp
+    src/render/SpriteSheetLoader.cpp
 )
 
 find_package(SDL3 CONFIG REQUIRED)
 find_package(SDL3_image CONFIG REQUIRED)
-target_link_libraries(CreamTruffleGingerbread PRIVATE SDL3::SDL3 SDL3_image::SDL3_image)
+find_package(nlohmann_json CONFIG REQUIRED)
+target_link_libraries(CreamTruffleGingerbread PRIVATE
+    SDL3::SDL3 SDL3_image::SDL3_image nlohmann_json::nlohmann_json)
 target_compile_options(CreamTruffleGingerbread PRIVATE /utf-8)
