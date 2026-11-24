@@ -18,13 +18,18 @@ xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     v
 
 Motion
-w  - next word's before
-e  - this word's end
+wW - next word's before
+eE - this word's end
 0  - to line begin
 $  - to lin end
 ^  - to first non-space character
+bB - previous word's begin
+ge - previous word's word
+
 gg - file's begin
 g_ - to current line's last non-space character
+gm - jump to middle of screen
+gM - jump to middle of line
 G  - file's end
   This thing drives me crazy.                     
 
